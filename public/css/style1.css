@@ -1,0 +1,14 @@
+.btn_reg{
+    color: black;
+    background-color: rgb(2, 216, 98);
+    text-decoration: none;
+    padding: 9px;
+    border-radius: 5px;
+}
+.btn_reg:hover{
+    color: white;
+    background-color: rgb(0, 34, 255);
+    text-decoration: none;
+    padding: 9px;
+    border-radius: 5px;
+}

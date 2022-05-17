@@ -1,0 +1,61 @@
+<%-include('../header_footer/header')%>
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Krishna's Blog</h1>
+                            <!-- <span class="subheading">A Blog Theme by Start Bootstrap</span> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+
+        <% if(message.length>0) { %>
+            <div class="alert alert-success">
+              <%= message %>
+            </div>
+            <% } %>
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                            <% if(data.docs && data.docs.length > 0) {%>
+                                <% for(let blog of data.docs) { if(blog.status!=0){%>
+                                    <div>
+                                    <a href="/post_details/<%= blog._id %>">
+                                        <h1><%=blog.post_title%></h1>
+                                        <h4><%=blog.post_subtitle%></h4>
+                                    </a>
+                                        <p>Created by : <b> <%=blog.name%> </b></p>
+                                        <hr class="my-4" />
+                                    </div>
+                                <%} } }else {%>
+                                    <h1>No data found</h1>
+                            <%}%>
+    
+                    </div>
+                    <div class="d-flex justify-content-end mb-4">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                              <li class="page-item"><a class="page-link <%= !data.hasPrevPage ? 'disabled' : '' %>" href="<%= data.prevPage ? `?page=${data.prevPage}` : '' %>">Previous</a></li>
+                              <% if(data.totalPages){ for(i=1; i<=data.totalPages; i++){ %>
+                              <li class="page-item <%= (pager == i) ? 'active' : '' %>"><a class="page-link" href="?page=<%= i %>"><%= i %></a></li>
+                              <% }} %>
+                             
+                              <li class="page-item"><a class="page-link <%= !data.hasNextPage ? 'disabled' : '' %>" href="<%= data.nextPage ? `?page=${data.nextPage}` : '' %>">Next</a></li>
+                            </ul>
+                          </nav>
+                    </div>
+                    <!-- Pager-->
+                    <!-- <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div> -->
+                    <br><br>
+                </div>
+            </div>
+        </div>
+        <!-- Footer-->
+        <%-include('../header_footer/footer')%>
